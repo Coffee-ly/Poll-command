@@ -4,10 +4,11 @@ const { MessageEmbed } = require('discord.js');
 module.exports = class PollCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'poll',
-      group: 'other',
-      memberName: 'poll',
-      description: 'Creates a poll with up to 10 choices.',
+      name: 'COMMAND_NAME',
+      group: 'GROUP_NAME',
+      memberName: 'MEMBER_NAME',
+      description: 'COMMAND_DESCRIPTION',
+      //args are customizable
       args: [
         {
           key: 'question',
@@ -42,6 +43,8 @@ module.exports = class PollCommand extends Command {
     });
   }
 
+
+  // can change emoji's according to your wish
   run(msg, { question, options, time }) {
     var emojiList = [
       '1⃣',
@@ -66,13 +69,13 @@ module.exports = class PollCommand extends Command {
       .setTitle(':ballot_box: ' + question)
       .setDescription(optionsText)
       .setAuthor(msg.author.username, msg.author.displayAvatarURL())
-      .setColor(`#FF0000`)
+      .setColor(`RANDOM`)
       .setTimestamp();
 
     if (time) {
-      embed.setFooter(`The poll has started and will last ${time} minute(s)`);
+      embed.setFooter(`Poll has been initiated and will end in ${time} minute(s)`);
     } else {
-      embed.setFooter(`The poll has started and has no end time`);
+      embed.setFooter(`poll has been started but with no end timing!`);
     }
 
     msg.delete(); // Remove the user's command message
@@ -108,7 +111,7 @@ module.exports = class PollCommand extends Command {
                 // Display winner(s)
                 var winnersText = '';
                 if (reactionCountsArray[indexMax[0]] == 0) {
-                  winnersText = ':x: No one voted!';
+                  winnersText = ':x: Sorry, seems like no one voted!';
                 } else {
                   for (let i = 0; i < indexMax.length; i++) {
                     winnersText +=
@@ -121,11 +124,10 @@ module.exports = class PollCommand extends Command {
                   }
                 }
 
-                embed.addField(':crown: **Winner(s):**', winnersText);
+                embed.addField(':crown: **Winner(s)!:**', winnersText);
                 embed.setFooter(
-                  `The poll is now closed! It lasted ${time} minute(s)`
+                  `Poll has been stoped, it lasted for ${time} minute(s)`
                 );
-                embed.setTimestamp();
 
                 message.edit('', embed);
               });
