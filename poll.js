@@ -66,7 +66,7 @@ module.exports = class PollCommand extends Command {
     }
 
     var embed = new MessageEmbed()
-      .setTitle(':ballot_box: ' + question)
+      .setTitle(':ping_pong: ' + question)
       .setDescription(optionsText)
       .setAuthor(msg.author.username, msg.author.displayAvatarURL())
       .setColor(`RANDOM`)
@@ -124,7 +124,7 @@ module.exports = class PollCommand extends Command {
                   }
                 }
 
-                embed.addField(':crown: **Winner(s)!:**', winnersText);
+                embed.addField(':trophy: **Winner(s)!:**', winnersText);
                 embed.setFooter(
                   `Poll has been stoped, it lasted for ${time} minute(s)`
                 );
